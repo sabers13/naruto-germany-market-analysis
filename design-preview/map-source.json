@@ -1,0 +1,11 @@
+{
+  "title": "BKG Verwaltungsgebiete 1:250 000 (VG250), L\u00e4nder, terrestrial areas (gf=4)",
+  "source": "https://sgx.geodatenzentrum.de/wfs_vg250",
+  "retrieved": "2026-10-23",
+  "attribution": "\u00a9 GeoBasis-DE / BKG (2026), Daten ver\u00e4ndert",
+  "licence": "Datenlizenz Deutschland \u2013 Namensnennung \u2013 Version 2.0",
+  "licence_url": "https://www.govdata.de/dl-de/by-2-0",
+  "projection": "EPSG:3035",
+  "simplification_metres": 220,
+  "states": 16
+}

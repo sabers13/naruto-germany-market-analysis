@@ -1,0 +1,843 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sabersojudi.com/naruto-germany/dashboard.schema.json",
+  "title": "Naruto × Germany dashboard data contract",
+  "description": "Public edition of the Naruto × Germany dashboard data contract. Aggregates only: no listing titles, comment text, usernames, IDs or listing URLs.",
+  "type": "object",
+  "required": [
+    "meta",
+    "weights",
+    "kpis",
+    "characters",
+    "robustness",
+    "momentum",
+    "regions_trends",
+    "merch",
+    "events",
+    "sources",
+    "benchmark_comparison"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "charKey": {
+      "enum": [
+        "naruto_uzumaki",
+        "sasuke_uchiha",
+        "itachi_uchiha",
+        "kakashi_hatake",
+        "hinata_hyuga",
+        "gaara",
+        "madara_uchiha",
+        "obito_uchiha",
+        "minato_namikaze",
+        "nagato_pain",
+        "jiraiya",
+        "orochimaru",
+        "tsunade",
+        "shikamaru_nara"
+      ]
+    },
+    "count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "eur": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "rank": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 13
+    },
+    "lensRank": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 13
+    },
+    "weights": {
+      "type": "object",
+      "required": [
+        "shoppers",
+        "watching",
+        "votes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "shoppers": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "watching": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "votes": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  },
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "contract_version",
+        "release_id",
+        "status",
+        "generated_utc",
+        "snapshot_date",
+        "archive_commit",
+        "youtube_snapshot",
+        "notes",
+        "edition"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "contract_version": {
+          "type": "string",
+          "pattern": "^1\\.\\d+\\.\\d+$"
+        },
+        "release_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "preview",
+            "validated"
+          ]
+        },
+        "generated_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "snapshot_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "archive_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "youtube_snapshot": {
+          "type": "string",
+          "format": "date"
+        },
+        "input_sha256": {
+          "type": "string",
+          "description": "Hash over all input tables; validated releases only."
+        },
+        "edition": {
+          "const": "public"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "weights": {
+      "$ref": "#/$defs/weights"
+    },
+    "kpis": {
+      "type": "object",
+      "required": [
+        "shop_listings_checked",
+        "youtube_comments_de",
+        "youtube_comments_total",
+        "anime2you_articles",
+        "records_counted",
+        "characters_ranked",
+        "sources_in_score"
+      ],
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "characters": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "name",
+          "role",
+          "rank",
+          "index",
+          "lens_ranks",
+          "top3_sources",
+          "confidence",
+          "counts",
+          "prices_eur",
+          "flags"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "$ref": "#/$defs/charKey"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "candidate",
+              "benchmark"
+            ]
+          },
+          "rank": {
+            "$ref": "#/$defs/rank"
+          },
+          "index": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "lens_ranks": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "shoppers",
+              "watching",
+              "votes"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "shoppers": {
+                "$ref": "#/$defs/lensRank"
+              },
+              "watching": {
+                "$ref": "#/$defs/lensRank"
+              },
+              "votes": {
+                "$ref": "#/$defs/lensRank"
+              }
+            }
+          },
+          "top3_sources": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 8
+          },
+          "confidence": {
+            "enum": [
+              "robust",
+              "mixed",
+              "one_source",
+              null
+            ]
+          },
+          "counts": {
+            "type": "object",
+            "required": [
+              "amazon_products",
+              "ebay_items",
+              "kleinanzeigen_ads",
+              "youtube_videos_de",
+              "youtube_comments_de",
+              "anime2you_articles",
+              "fan_votes_eu",
+              "google_interest"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "amazon_products": {
+                "$ref": "#/$defs/count"
+              },
+              "ebay_items": {
+                "$ref": "#/$defs/count"
+              },
+              "kleinanzeigen_ads": {
+                "$ref": "#/$defs/count"
+              },
+              "youtube_videos_de": {
+                "$ref": "#/$defs/count"
+              },
+              "youtube_comments_de": {
+                "$ref": "#/$defs/count"
+              },
+              "anime2you_articles": {
+                "$ref": "#/$defs/count"
+              },
+              "anime2you_comment_mentions": {
+                "$ref": "#/$defs/count"
+              },
+              "fan_votes_eu": {
+                "$ref": "#/$defs/count"
+              },
+              "google_interest": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          },
+          "prices_eur": {
+            "type": "object",
+            "required": [
+              "amazon",
+              "ebay",
+              "kleinanzeigen"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "amazon": {
+                "$ref": "#/$defs/eur"
+              },
+              "ebay": {
+                "$ref": "#/$defs/eur"
+              },
+              "kleinanzeigen": {
+                "$ref": "#/$defs/eur"
+              }
+            }
+          },
+          "accuracy": {
+            "type": "object",
+            "description": "Precision per source from the accuracy check (0-1); validated releases only.",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "ambiguous_name",
+                "franchise_name",
+                "low_precision",
+                "suppressed",
+                "excluded_source"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "robustness": {
+      "type": "object",
+      "required": [
+        "kendall_w",
+        "agreement_label",
+        "leave_one_out",
+        "alt_weights"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kendall_w": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "agreement_label": {
+          "enum": [
+            "weak",
+            "moderate",
+            "strong"
+          ]
+        },
+        "leave_one_out": {
+          "type": "object",
+          "required": [
+            "runs",
+            "same_top3",
+            "top3"
+          ],
+          "properties": {
+            "runs": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "same_top3": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "top3": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/charKey"
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          }
+        },
+        "alt_weights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "weights",
+              "top3",
+              "same_top3"
+            ],
+            "properties": {
+              "name": {
+                "enum": [
+                  "equal",
+                  "shoppers_only",
+                  "german_only"
+                ]
+              },
+              "weights": {
+                "$ref": "#/$defs/weights"
+              },
+              "top3": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "$ref": "#/$defs/charKey"
+                }
+              },
+              "same_top3": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "momentum": {
+      "type": "object",
+      "required": [
+        "source",
+        "unit",
+        "periods",
+        "partial_last",
+        "series",
+        "change_12m",
+        "flags"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "const": "google_trends_de"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}$"
+          },
+          "minItems": 8
+        },
+        "partial_last": {
+          "type": "boolean"
+        },
+        "series": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/charKey"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "change_12m": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/charKey"
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "flags": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/charKey"
+          },
+          "additionalProperties": {
+            "enum": [
+              "ambiguous_name",
+              "censored",
+              "topic_series",
+              "term_series"
+            ]
+          }
+        }
+      }
+    },
+    "regions_trends": {
+      "type": "object",
+      "description": "Google Trends DE by state (context, not in the score). naruto_index: single-term request for 'Naruto', strongest state = 100. shares: each candidate's share (whole percent) of its own multi-term request that includes 'Naruto'; comparable across states, not across characters. Google's 0 (too few searches) is null.",
+      "required": [
+        "source",
+        "window",
+        "flat_spread",
+        "states",
+        "readings",
+        "missing"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "const": "google_trends_de"
+        },
+        "window": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{4}-\\d{2}-\\d{2}$"
+        },
+        "flat_spread": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "states": {
+          "type": "array",
+          "minItems": 16,
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "required": [
+              "code",
+              "name",
+              "naruto_index",
+              "shares"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "name": {
+                "type": "string"
+              },
+              "naruto_index": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "shares": {
+                "type": "object",
+                "propertyNames": {
+                  "$ref": "#/$defs/charKey"
+                },
+                "additionalProperties": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            }
+          }
+        },
+        "readings": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/charKey"
+          },
+          "additionalProperties": {
+            "enum": [
+              "flat",
+              "hint",
+              "ambiguous"
+            ]
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/charKey"
+          }
+        }
+      }
+    },
+    "merch": {
+      "type": "object",
+      "required": [
+        "source",
+        "categories",
+        "min_items",
+        "by_character"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "const": "ebay"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "figures",
+              "clothing",
+              "cards",
+              "manga_media",
+              "accessories",
+              "other"
+            ]
+          }
+        },
+        "min_items": {
+          "type": "integer"
+        },
+        "by_character": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/charKey"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "owner",
+          "confidence",
+          "title_en",
+          "title_de",
+          "note_en",
+          "note_de",
+          "source_url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "owner": {
+            "const": "franchise"
+          },
+          "confidence": {
+            "enum": [
+              "confirmed",
+              "reported",
+              "announced_unconfirmed"
+            ]
+          },
+          "title_en": {
+            "type": "string"
+          },
+          "title_de": {
+            "type": "string"
+          },
+          "note_en": {
+            "type": "string"
+          },
+          "note_de": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "records",
+          "in_score"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "enum": [
+              "amazon",
+              "ebay",
+              "kleinanzeigen",
+              "youtube",
+              "google_trends",
+              "anime2you",
+              "narutop99",
+              "wikimedia",
+              "instagram"
+            ]
+          },
+          "records": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "null for a source whose figures are not published."
+          },
+          "in_score": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "benchmark_comparison": {
+      "type": "object",
+      "required": [
+        "benchmark",
+        "sources",
+        "by_character"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "benchmark": {
+          "const": "naruto_uzumaki"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "metric",
+              "comparable",
+              "reason",
+              "benchmark_value"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "enum": [
+                  "amazon",
+                  "ebay",
+                  "kleinanzeigen",
+                  "youtube_comments",
+                  "youtube_videos",
+                  "google_trends",
+                  "anime2you_comments",
+                  "anime2you_articles",
+                  "narutop99"
+                ]
+              },
+              "metric": {
+                "type": "string"
+              },
+              "comparable": {
+                "type": "boolean"
+              },
+              "reason": {
+                "enum": [
+                  "explicit_tags",
+                  "vote",
+                  "precision_ok",
+                  "precision_low",
+                  "precision_uncertain",
+                  "alias_restricted",
+                  "franchise_dominated",
+                  "not_measured"
+                ]
+              },
+              "detail": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "benchmark_value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "by_character": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/charKey"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "ratios",
+              "comparable_sources",
+              "ahead_in"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "ratios": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0
+                }
+              },
+              "comparable_sources": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "ahead_in": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

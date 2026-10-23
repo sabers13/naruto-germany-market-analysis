@@ -1,0 +1,156 @@
+
+/* ===== TOKENS (identical to references/tokens.css) ===== */
+/* =====================================================================
+   Glass Carousel — tokens
+   Sampled from the reference (dark). Configurable inputs:
+     --accent   rating/score chip, focus ring, progress   (default amber)
+     --like     liked-heart fill                           (default rose-red)
+     --stage-bg backdrop behind the carousel (colour or image)
+   Light theme is an extension (reference is dark only).
+   Scope: tokens live on .gc (the component root), so several carousels
+   with different accents can coexist on one page.
+   ===================================================================== */
+
+.gc {
+  /* ---- Inputs ---------------------------------------------------------- */
+  --accent:    #F5B83D;
+  --on-accent: #1A1406;
+  --like:      #FF4D6D;
+  --stage-bg:  #0E0E11;
+
+  /* ---- Glass ----------------------------------------------------------- */
+  --glass:          rgba(22, 22, 27, .58);   /* card body under the image fade */
+  --glass-strong:   rgba(18, 18, 22, .78);   /* control bar                     */
+  --glass-chip:     rgba(255, 255, 255, .12);
+  --glass-border:   rgba(255, 255, 255, .14);
+  --glass-highlight:rgba(255, 255, 255, .22);/* 1px top inner highlight         */
+  --glass-blur:     18px;
+  --card-shadow:    0 30px 60px -20px rgba(0,0,0,.65), 0 8px 20px rgba(0,0,0,.35);
+
+  /* ---- Ink ------------------------------------------------------------- */
+  --ink:       #F4F4F6;
+  --ink-2:     rgba(244,244,246,.78);
+  --ink-muted: rgba(244,244,246,.52);
+  --ink-faint: rgba(244,244,246,.32);
+  --divider:   rgba(255,255,255,.10);
+  --accent-soft: color-mix(in oklab, var(--accent) 22%, transparent);
+
+  /* ---- Geometry (desktop; see anatomy.md for the transform math) -------- */
+  --card-w: 340px;   --card-h: 470px;   --card-r: 24px;
+  --img-ratio: .56;                       /* image occupies top 56%          */
+  --perspective: 1400px;
+  --step-1: .84;     /* x offset of first neighbour, × card width           */
+  --step-n: .56;     /* each further neighbour, × card width                */
+  --rot-1: 22deg;    --rot-n: 8deg;      /* rotateY for |d|=1, extra per step */
+  --depth: 150px;    /* translateZ per step (negative)                      */
+  --side-dim: .62;   /* brightness of non-active cards                      */
+
+  /* ---- Type ------------------------------------------------------------ */
+  --font: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-slide: cubic-bezier(.16, 1, .3, 1);   /* sharp start, long settle  */
+  --dur-slide: 420ms;
+  --dur-fast: 160ms;
+  --autoplay-ms: 3800;
+
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+.gc[data-theme="light"] {           /* extension */
+  --stage-bg: #E9EAEE;
+  --glass: rgba(255,255,255,.55);  --glass-strong: rgba(255,255,255,.78);
+  --glass-chip: rgba(15,15,20,.06); --glass-border: rgba(15,15,20,.10);
+  --glass-highlight: rgba(255,255,255,.9);
+  --card-shadow: 0 30px 60px -24px rgba(20,20,40,.35), 0 8px 20px rgba(20,20,40,.12);
+  --ink: #15151A; --ink-2: rgba(21,21,26,.78); --ink-muted: rgba(21,21,26,.55); --ink-faint: rgba(21,21,26,.35);
+  --divider: rgba(15,15,20,.08);
+  --side-dim: .9;
+}
+
+@media (max-width: 767px) {
+  .gc { --card-w: 260px; --card-h: 380px; --step-1: .72; --step-n: .4; --rot-1: 16deg; --depth: 110px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc { --dur-slide: 0ms; --rot-1: 0deg; --rot-n: 0deg; }
+}
+
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0E0E11}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+
+/* ---- Stage ---------------------------------------------------------- */
+.gc{position:relative;min-height:var(--gc-min-h,100vh);overflow:hidden;background:var(--stage-bg);display:flex;flex-direction:column;justify-content:center;
+  outline:none;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.gc-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.gc-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 60% at 50% 45%,transparent 30%,rgba(0,0,0,.55) 100%)}
+.gc[data-theme="light"] .gc-vignette{background:radial-gradient(70% 60% at 50% 45%,transparent 40%,rgba(255,255,255,.5) 100%)}
+.gc-track{position:relative;height:calc(var(--card-h) + 60px);perspective:var(--perspective);perspective-origin:50% 45%;cursor:grab}
+.gc.dragging .gc-track{cursor:grabbing}
+
+/* ---- Card ----------------------------------------------------------- */
+.gc-card{position:absolute;left:50%;top:50%;width:var(--card-w);height:var(--card-h);margin:calc(var(--card-h)/-2) 0 0 calc(var(--card-w)/-2);
+  border-radius:var(--card-r);overflow:hidden;background:var(--glass);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(140%);backdrop-filter:blur(var(--glass-blur)) saturate(140%);
+  box-shadow:var(--card-shadow),inset 0 1px 0 var(--glass-highlight),inset 0 0 0 1px var(--glass-border);
+  transition:transform var(--dur-slide) var(--ease-slide),opacity var(--dur-slide) var(--ease-slide),filter var(--dur-slide) var(--ease-slide);
+  will-change:transform;backface-visibility:hidden}
+.gc.dragging .gc-card{transition:none}
+.gc-img{position:absolute;inset:0 0 auto 0;height:calc(var(--card-h)*var(--img-ratio) + 70px);
+  -webkit-mask-image:linear-gradient(#000 62%,transparent);mask-image:linear-gradient(#000 62%,transparent)}
+.gc-img>*{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.gc-top{position:absolute;inset:14px 14px auto 14px;display:flex;justify-content:space-between;opacity:var(--f);transition:opacity var(--dur-fast)}
+.gc-chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:999px;font-size:12px;font-weight:500;
+  background:var(--glass-chip);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--glass-border);color:#fff}
+.gc-dots{width:28px;padding:0;justify-content:center}
+.gc-body{position:absolute;inset:auto 0 0 0;padding:18px 18px 16px}
+.gc-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.gc-title h3{margin:0;font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.gc-idx{font-size:12px;color:var(--ink-muted);font-variant-numeric:tabular-nums;opacity:var(--f)}
+.gc-sub{font-size:11.5px;color:var(--ink-muted);margin-top:3px}
+.gc-desc{font-size:12.5px;line-height:1.5;color:var(--ink-2);margin:10px 0 12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;opacity:var(--f)}
+.gc-meta{border-top:1px solid var(--divider);padding-top:10px;display:grid;gap:4px;opacity:var(--f)}
+.gc-meta div{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-2)}
+.gc-meta .mono{font-family:var(--mono);font-size:10.5px;color:var(--ink-muted)}
+.gc-meta svg{width:12px;height:12px;flex:none}
+.gc-pin{color:var(--like)}
+/* active vs side: --f (0..1) is set per card from its distance */
+.gc-card:not(.is-active) .gc-sub{opacity:calc(1 - var(--f))}
+.gc-card.is-active .gc-sub{display:none}
+
+/* ---- Control bar ---------------------------------------------------- */
+.gc-bar{position:relative;z-index:200;align-self:center;margin-top:8px;display:flex;align-items:center;gap:8px;padding:6px;border-radius:999px;
+  background:var(--glass-strong);-webkit-backdrop-filter:blur(var(--glass-blur));backdrop-filter:blur(var(--glass-blur));
+  box-shadow:inset 0 1px 0 var(--glass-highlight),inset 0 0 0 1px var(--glass-border),0 10px 30px rgba(0,0,0,.35)}
+.gc-btn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--glass-chip);box-shadow:inset 0 0 0 1px var(--glass-border);color:var(--ink);transition:background var(--dur-fast),transform 120ms}
+.gc-btn:hover{background:rgba(255,255,255,.2)} .gc-btn:active{transform:scale(.94)}
+.gc-btn svg{width:15px;height:15px}
+.gc-now{display:flex;align-items:center;gap:10px;padding:0 10px 0 4px;min-width:210px}
+.gc-thumb{width:34px;height:34px;border-radius:50%;overflow:hidden;flex:none;box-shadow:inset 0 0 0 1px var(--glass-border)}
+.gc-thumb>*{width:100%;height:100%;object-fit:cover;display:block}
+.gc-now b{font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.gc-now small{display:block;font-size:11px;color:var(--ink-muted);white-space:nowrap;margin-top:1px}
+.gc-rate{font-size:10.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:1px 6px;font-variant-numeric:tabular-nums}
+.gc-like[aria-pressed="true"]{background:var(--like);color:#fff;box-shadow:none}
+.gc-like[aria-pressed="true"] svg{fill:currentColor}
+.gc-like.pop{animation:pop .32s var(--ease-slide)}
+@keyframes pop{40%{transform:scale(1.22)}}
+.gc-nowtext{transition:opacity var(--dur-fast)}
+.gc :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Expand dialog (extension: reference shows the chip, not the expanded state) */
+.gc-dialog{border:0;padding:0;border-radius:28px;width:min(760px,92vw);background:var(--glass-strong);color:var(--ink);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);box-shadow:inset 0 0 0 1px var(--glass-border),0 40px 80px rgba(0,0,0,.6);overflow:hidden}
+.gc-dialog::backdrop{background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.gc-dialog[open]{animation:dlg .36s var(--ease-slide)}
+@keyframes dlg{from{opacity:0;transform:scale(.94) translateY(10px)}}
+.gc-dialog .hero{height:300px} .gc-dialog .hero>*{width:100%;height:100%;object-fit:cover;display:block}
+.gc-dialog .in{padding:22px 26px 26px}.gc-dialog h2{margin:0 0 8px;font-size:26px;font-weight:600}
+.gc-dialog p{color:var(--ink-2);line-height:1.6;margin:0 0 14px}
+.gc-close{position:absolute;top:14px;right:14px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:767px){.gc-now{min-width:0}.gc-now small{display:none}.gc-play{display:none}}

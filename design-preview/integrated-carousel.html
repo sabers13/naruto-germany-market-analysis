@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B0B0D">
+  <meta name="description" content="Explore seven Naruto character illustrations in a glass carousel.">
+  <title>Shinobi collection · Unified background</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../avatar-carousel-v2/carousel.css">
+  <link rel="stylesheet" href="../avatar-carousel-v2/avatars.css">
+  <link rel="stylesheet" href="../avatar-carousel-v2/unified.css">
+  <link rel="stylesheet" href="carousel-metrics.css?v=podium1"><script src="../data/dashboard.js"></script><script src="character-names.js?v=podium1"></script><script src="integrated-carousel.js?v=podium1" defer></script>
+</head>
+<body>
+  <a class="skip" href="#gc-track">Skip to characters</a>
+  <main class="gc" id="gc" data-theme="dark" tabindex="0" aria-roledescription="carousel" aria-label="Naruto character collection" aria-describedby="gc-hint" data-ui>
+    <svg class="gc-bg" id="gc-bg" aria-hidden="true" preserveAspectRatio="xMidYMid slice"></svg>
+    <div class="gc-vignette" aria-hidden="true"></div>
+    <header class="collection-header" hidden>
+      <div><h1>Shinobi collection</h1><p>Choose a character to explore.</p></div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light theme" aria-pressed="false">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        <span id="theme-label">Light</span>
+      </button>
+    </header>
+    <div class="stage-layout"><div class="stage-art"><div class="gc-track" id="gc-track" tabindex="-1" aria-label="Character cards"></div><div id="active-identity" aria-live="polite"></div></div><aside id="character-metrics" aria-live="polite"></aside></div>
+    <div class="gc-bar" role="group" aria-label="Carousel controls">
+      <button class="gc-btn" id="gc-prev" aria-label="Previous character"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
+      <button class="gc-btn gc-play" id="gc-play" aria-label="Start autoplay" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></button>
+      <div class="gc-now"><span class="gc-thumb" id="gc-thumb" aria-hidden="true"></span><div class="gc-nowtext" id="gc-nowtext"><b id="gc-ntitle"></b></div></div>
+      <button class="gc-btn" id="gc-next" aria-label="Next character"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+    </div>
+    <nav class="gc-pagination" id="gc-pagination" aria-label="Choose a character"></nav>
+    <p class="gc-hint" id="gc-hint">Drag to explore <span aria-hidden="true">·</span> Use the arrow keys</p>
+    <div class="sr" aria-live="polite" aria-atomic="true" id="gc-live"></div>
+    <dialog class="gc-dialog" id="gc-dialog" aria-labelledby="gc-dtitle" aria-describedby="gc-ddesc">
+      <div class="hero" id="gc-dhero"></div>
+      <button class="gc-btn gc-close" id="gc-dclose" aria-label="Close character details"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+      <div class="in"><h2 id="gc-dtitle"></h2><p class="detail-subtitle" id="gc-dsubtitle"></p><p id="gc-ddesc"></p><a id="gc-source" class="art-source" target="_blank" rel="noopener noreferrer">Artwork source ↗</a></div>
+    </dialog>
+  </main>
+</body>
+</html>

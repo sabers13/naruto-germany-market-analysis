@@ -1,0 +1,47 @@
+/* Version 2: one continuous background behind every character. */
+.gc-card {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+}
+
+.gc-img {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Position and edge opacity share one animation clock, including the wrap seam. */
+.gc-card, .gc-body { transition: none; }
+.gc-track {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent);
+}
+.gc-body { transform: none; bottom: 35px; text-align: center; }
+.gc-title { justify-content: center; }
+.gc { --card-h: 430px; }
+.gc-img { height: calc(var(--card-h) - 60px); }
+.gc-now { min-width: 190px; }
+.gc-dialog { isolation: isolate; color: #F4F4F6; --ink-2: rgba(244,244,246,.88); --ink-muted: rgba(244,244,246,.74); --divider: rgba(255,255,255,.18); background: #111113; }
+.gc-dialog::before { content: ""; position: absolute; z-index: -2; inset: 0; background-image: var(--detail-art); background-size: cover; background-position: center; }
+.gc-dialog::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(11,11,13,.28), rgba(11,11,13,.88) 65%); }
+.gc-dialog .hero { background: transparent; }
+.gc-dialog .in { position: relative; }
+.art-source { display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; font-size: 11px; color: var(--ink-muted); text-underline-offset: 4px; }
+.art-source[hidden] { display: none; }
+.art-source:hover { color: #FFFFFF; }
+.gc-close { background: rgba(18,18,22,.85); color: #FFFFFF; }
+@media (max-width: 767px) {
+  .gc { --card-h: 390px; --avatar-safe-bottom: 26px; }
+  .gc-now { min-width: 0; }
+  .gc-dialog::after { background: linear-gradient(0deg, rgba(11,11,13,.95), rgba(11,11,13,.25)); }
+}
+
+/* Without opaque panels, neighbouring captions must not cross the active copy. */
+@media (max-width: 1100px) {
+  .gc-card:not(.is-active) .gc-body {
+    visibility: hidden;
+  }
+}
