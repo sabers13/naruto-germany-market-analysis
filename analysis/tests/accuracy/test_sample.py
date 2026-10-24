@@ -51,10 +51,10 @@ def test_small_stratum_takes_everything_available():
 
 
 def test_load_matches_reads_only_keyword_sources(tmp_path):
-    df = make_matches({("amazon", "sasuke_uchiha"): 5, ("instagram", "sasuke_uchiha"): 5})
+    df = make_matches({("amazon", "sasuke_uchiha"): 5, ("wikimedia", "sasuke_uchiha"): 5})
     write_matches(df, tmp_path)
     loaded = load_matches(tmp_path)
-    assert set(loaded.source.unique()) == {"amazon"}  # instagram is not keyword-matched
+    assert set(loaded.source.unique()) == {"amazon"}  # wikimedia is not keyword-matched
 
 
 def test_run_writes_sample_parquet(tmp_path, ample_matches):

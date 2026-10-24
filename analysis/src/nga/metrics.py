@@ -25,7 +25,7 @@ COLUMNS = {
     "lane": "string",            # the shops lane..the votes lane
 }
 SOURCES = {"amazon", "ebay", "kleinanzeigen", "youtube", "google_trends", "anime2you",
-           "narutop99", "wikimedia", "instagram", "event_calendar"}
+           "narutop99", "wikimedia", "event_calendar"}
 LENSES = {"shoppers", "watching", "votes", "context"}
 CLASSES = {"A", "B", "C", "D", "E"}
 

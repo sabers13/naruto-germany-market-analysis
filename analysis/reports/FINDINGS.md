@@ -1,6 +1,6 @@
 # Findings: which Naruto characters show the strongest evidence of potential in Germany
 
-Snapshot 2026-10-22 · public edition (`data/dashboard.json`, release_id `v1.2.0-20261022-fb74b269`, sha256 `197e4f3e3c36420df06ab0684955a4c47195d2481911c6cc8055262132e93b79`, `status validated`, contract 1.2.0) · 13 candidates ranked, 7 sources in score, 1 source fairly comparable with Naruto.
+Snapshot 2026-10-22 · public edition (`data/dashboard.json`, release_id `v1.2.0-20261022-8187b745`, sha256 `399c29c786a649c043d62f6ede4062410826aafb05fa6691edcbd7660587b0c1`, `status validated`, contract 1.2.0) · 13 candidates ranked, 7 sources in score, 1 source fairly comparable with Naruto.
 
 Kleinanzeigen counts feed the evidence index, but its figures (ad counts, prices, state totals) are not published, so this edition leaves them out.
 

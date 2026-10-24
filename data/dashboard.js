@@ -973,7 +973,6 @@ window.DASHBOARD = {
   "input_sha256": "39c22819f39b1a0cb98b84a36a62f6b2f80cab590dac455e6715cfa28f127cd3",
   "notes": [
    "Validated release: deduped entity counts, accuracy-checked.",
-   "See reports/RECONCILIATION.md for the number trail.",
    "generated_utc is pinned to the snapshot date (midnight UTC) for reproducible hashes.",
    "change_12m is rounded to 1 dp; momentum series values to 2 dp.",
    "records counts only rows of series that feed the score (censored Trends series excluded).",
@@ -981,7 +980,7 @@ window.DASHBOARD = {
    "Kendall W (all 7 sources, n=3 complete cases) = 0.429",
    "Public edition: Kleinanzeigen figures are not published; the source still feeds the evidence index."
   ],
-  "release_id": "v1.2.0-20261022-fb74b269",
+  "release_id": "v1.2.0-20261022-8187b745",
   "snapshot_date": "2026-10-22",
   "status": "validated",
   "youtube_snapshot": "2026-10-22"
@@ -1568,11 +1567,6 @@ window.DASHBOARD = {
    "id": "google_trends",
    "in_score": true,
    "records": 1305
-  },
-  {
-   "id": "instagram",
-   "in_score": false,
-   "records": 843
   },
   {
    "id": "kleinanzeigen",

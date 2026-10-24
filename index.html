@@ -372,7 +372,7 @@ en:{
  "me.srcT":"Where the numbers come from","me.srcS":"8 sources in the index, 2 shown only as context",
  "s.am":"Amazon.de","s.amn":"search results for Naruto products","s.eb":"eBay.de","s.ebn":"listing observations, Nov 2024 to Oct 2026","s.ka":"Kleinanzeigen.de","s.kan":"ads across all 16 states",
  "s.yt":"YouTube","s.ytn":"videos and comments, German channels first","s.gt":"Google Trends","s.gtn":"search-interest data points for Germany","s.a2":"Anime2You","s.a2n":"German articles and comments",
- "s.vo":"Official fan vote (NARUTOP99)","s.von":"vote rows by world region, 2023","s.wk":"Wikipedia (context)","s.wkn":"page views in 14 languages, not German-specific","s.ig":"Instagram (context)","s.ign":"posts from global hashtags",
+ "s.vo":"Official fan vote (NARUTOP99)","s.von":"vote rows by world region, 2023","s.wk":"Wikipedia (context)","s.wkn":"page views in 14 languages, not German-specific",
  "me.limT":"What this can't tell you","me.lim1":"How many units sold. Shops show listings and asking prices, not sales.","me.lim2":"Where people live. German-language sources include Austria and Switzerland.","me.lim3":"Whether people buy a particular product. Merchandise is a signal, not a sales test.",
  "me.pubT":"What is published","me.pub1":"Only totals, medians and shares. No listings, comments, names or links.","me.pub2":"Kleinanzeigen is part of the index. Its figures are not shown on this page.","me.pub3":"YouTube figures are our own counts as of 22 Oct 2026, never YouTube's view or like statistics.",
  "me.dl":"Download the aggregated data"
@@ -415,7 +415,7 @@ de:{
  "me.srcT":"Woher die Zahlen kommen","me.srcS":"8 Quellen im Index, 2 nur als Kontext",
  "s.am":"Amazon.de","s.amn":"Suchergebnisse für Naruto-Produkte","s.eb":"eBay.de","s.ebn":"Angebotsbeobachtungen, Nov. 2024 bis Okt. 2026","s.ka":"Kleinanzeigen.de","s.kan":"Anzeigen aus allen 16 Bundesländern",
  "s.yt":"YouTube","s.ytn":"Videos und Kommentare, deutsche Kanäle zuerst","s.gt":"Google Trends","s.gtn":"Datenpunkte zum Suchinteresse in Deutschland","s.a2":"Anime2You","s.a2n":"deutsche Artikel und Kommentare",
- "s.vo":"Offizielles Fan-Voting (NARUTOP99)","s.von":"Stimmzeilen nach Weltregion, 2023","s.wk":"Wikipedia (Kontext)","s.wkn":"Seitenaufrufe in 14 Sprachen, nicht nur Deutschland","s.ig":"Instagram (Kontext)","s.ign":"Beiträge aus globalen Hashtags",
+ "s.vo":"Offizielles Fan-Voting (NARUTOP99)","s.von":"Stimmzeilen nach Weltregion, 2023","s.wk":"Wikipedia (Kontext)","s.wkn":"Seitenaufrufe in 14 Sprachen, nicht nur Deutschland",
  "me.limT":"Was diese Seite nicht zeigt","me.lim1":"Wie viel verkauft wurde. Shops zeigen Angebote und Preise, keine Verkäufe.","me.lim2":"Wo die Leute wohnen. Deutschsprachige Quellen umfassen auch Österreich und die Schweiz.","me.lim3":"Ob jemand ein bestimmtes Produkt kauft. Merchandise ist ein Signal, kein Verkaufstest.",
  "me.pubT":"Was veröffentlicht wird","me.pub1":"Nur Summen, Mediane und Anteile. Keine Angebote, Kommentare, Namen oder Links.","me.pub2":"Kleinanzeigen ist Teil des Index. Die Zahlen daraus werden auf dieser Seite nicht gezeigt.","me.pub3":"YouTube-Zahlen sind eigene Zählungen vom Stand 22.10.2026, nie YouTubes Aufruf- oder Like-Statistiken.",
  "me.dl":"Aggregierte Daten herunterladen"
@@ -593,7 +593,7 @@ momentum_after(){
     document.querySelectorAll("[data-mo]").forEach(x=>x.setAttribute("aria-pressed",String(moSel.includes(x.dataset.mo))));draw()});
 },
 method(){
-  const L={amazon:["s.am","s.amn"],ebay:["s.eb","s.ebn"],kleinanzeigen:["s.ka","s.kan"],youtube:["s.yt","s.ytn"],google_trends:["s.gt","s.gtn"],anime2you:["s.a2","s.a2n"],narutop99:["s.vo","s.von"],wikimedia:["s.wk","s.wkn"],instagram:["s.ig","s.ign"]};
+  const L={amazon:["s.am","s.amn"],ebay:["s.eb","s.ebn"],kleinanzeigen:["s.ka","s.kan"],youtube:["s.yt","s.ytn"],google_trends:["s.gt","s.gtn"],anime2you:["s.a2","s.a2n"],narutop99:["s.vo","s.von"],wikimedia:["s.wk","s.wkn"]};
   const Wt=D.weights, pct=x=>Math.round(x*100);
   return head(t("me.title"),t("me.sub"))+`<div class="grid">
    <section class="hero-card c6 reveal" aria-label="${esc(t("me.heroLab"))}">

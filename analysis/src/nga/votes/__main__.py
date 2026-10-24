@@ -15,8 +15,7 @@ def main() -> None:
     check_archive()
     votes = narutop99.run()
     wiki, wiki_rows = context.wikimedia_run()
-    insta, insta_media = context.instagram_run()
-    all_metrics = pd.concat([votes, wiki, insta], ignore_index=True)
+    all_metrics = pd.concat([votes, wiki], ignore_index=True)
     metrics.write(all_metrics, "votes")
 
     events_doc = events.build_events()
@@ -27,15 +26,13 @@ def main() -> None:
     work("aux", "sources_votes.json").write_text(json.dumps([
         {"id": "narutop99", "records": n_europe, "in_score": True},
         {"id": "wikimedia", "records": wiki_rows, "in_score": False},
-        {"id": "instagram", "records": insta_media, "in_score": False},
     ], indent=2) + "\n")
     work("aux", "kpis_votes.json").write_text(json.dumps({}, indent=2) + "\n")
 
     prim = all_metrics[all_metrics["primary"]]
     print(prim.pivot_table(index="character_key", columns="source",
                            values="value", aggfunc="first").to_string())
-    print(f"wikimedia_rows_12m={wiki_rows} instagram_media={insta_media} "
-          f"narutop99_europe={n_europe}")
+    print(f"wikimedia_rows_12m={wiki_rows} narutop99_europe={n_europe}")
     print(f"events={len(events_doc)}")
 
 

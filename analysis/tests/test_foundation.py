@@ -29,7 +29,7 @@ def test_fourteen_locked_characters():
 
 
 def test_source_maps_cover_every_character():
-    for source in ["amazon", "ebay", "kleinanzeigen", "youtube", "instagram", "wikimedia", "anime2you", "narutop99", "trends_term"]:
+    for source in ["amazon", "ebay", "kleinanzeigen", "youtube", "wikimedia", "anime2you", "narutop99", "trends_term"]:
         assert set(characters.source_map(source).values()) == set(characters.keys()), source
 
 
@@ -164,7 +164,7 @@ def _entity_key_set(column, *parts, wrapped=True):
     """Distinct set of entity keys in a JSON mentions column.
 
     YouTube stores {"entities": {key: ...}} (wrapped=True);
-    Instagram stores {key: ...} directly (wrapped=False).
+    a flat {key: ...} mapping is read with wrapped=False.
     """
     con = duckdb.connect()
     values = con.execute(
@@ -200,9 +200,6 @@ def test_spellings_exist_in_archive():
         | _entity_key_set(
             "d_mentions",
             "youtube", "raw", "parquet", "naruto-de-youtube-v1__comments.parquet"),
-        "instagram": _entity_key_set(
-            "mentions_detail",
-            "instagram", "raw", "parquet", "insta_records.parquet", wrapped=False),
         "wikimedia": _archive_key_set(
             "SELECT DISTINCT character_key FROM read_parquet(?)",
             [str(paths.dataset("wikimedia", "collector", "exports",

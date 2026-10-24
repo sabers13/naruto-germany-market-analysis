@@ -676,7 +676,6 @@ SOURCE_IDS = frozenset(
         "anime2you",
         "narutop99",
         "wikimedia",
-        "instagram",
     ]
 )
 

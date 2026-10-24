@@ -31,7 +31,6 @@ FALLBACK_INPUTS = [
     "datasets/anime2you/data/full/comments.parquet",
     "datasets/anime2you/data/external/narutop99/narutop99_rankings.parquet",
     "datasets/wikimedia/collector/exports/full_2026-10-22/pageviews.parquet",
-    "datasets/instagram/raw/parquet/insta_records.parquet",
     "datasets/event_calendar/data/events.parquet",
 ]
 
@@ -121,7 +120,6 @@ def make_meta(
         if notes is not None
         else [
             "Validated release: deduped entity counts, accuracy-checked.",
-            "See reports/RECONCILIATION.md for the number trail.",
             "generated_utc is pinned to the snapshot date (midnight UTC) for reproducible hashes.",
             "change_12m is rounded to 1 dp; momentum series values to 2 dp.",
             "records counts only rows of series that feed the score (censored Trends series excluded).",

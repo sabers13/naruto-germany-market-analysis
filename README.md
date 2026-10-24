@@ -31,7 +31,7 @@
 
 ## How the evidence index works
 
-- **Sources in the index (7):** Amazon.de, eBay.de and Kleinanzeigen (shoppers), YouTube, Google Trends and Anime2You (watching), the official NARUTOP99 fan vote (votes). Wikipedia and Instagram are shown as context only, because they are not specific to Germany.
+- **Sources in the index (7):** Amazon.de, eBay.de and Kleinanzeigen (shoppers), YouTube, Google Trends and Anime2You (watching), the official NARUTOP99 fan vote (votes). Wikipedia is shown as context only, because it is not specific to Germany.
 - **Weights:** shoppers 50 %, watching 30 %, votes 20 %. Each character is ranked within each source; ranks are averaged per lens and combined into an index from 0 to 100.
 - **Accuracy:** keyword matches were checked by hand on a sample per source and character. Sources with low precision for a character were adjusted or left out for that character.
 - **Robustness:** leave-one-source-out runs, alternative weightings and Kendall's W for agreement between sources.
@@ -98,7 +98,7 @@ Add `?lang=en` or `?lang=de` and `?theme=light` or `?theme=dark` to the address 
 
 - Code: MIT, see [LICENSE](LICENSE). Third-party material: see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 - Map: © GeoBasis-DE / BKG (2026), VG250, adapted; licence dl-de/by-2-0.
-- Data sources: Amazon.de, eBay.de, Kleinanzeigen, YouTube, Google Trends, Anime2You, NARUTOP99, Wikipedia, Instagram (aggregated counts only).
+- Data sources: Amazon.de, eBay.de, Kleinanzeigen, YouTube, Google Trends, Anime2You, NARUTOP99, Wikipedia (aggregated counts only).
 
 This is an independent data project. It is not affiliated with or endorsed by Masashi Kishimoto, Shueisha, Studio Pierrot, VIZ Media or any other rights holder. Naruto and its characters are their property. The character figures are fan illustrations made for this project.
 

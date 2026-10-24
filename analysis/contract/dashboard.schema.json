@@ -243,7 +243,7 @@
         "required": ["id", "records", "in_score"],
         "additionalProperties": false,
         "properties": {
-          "id": { "enum": ["amazon", "ebay", "kleinanzeigen", "youtube", "google_trends", "anime2you", "narutop99", "wikimedia", "instagram"] },
+          "id": { "enum": ["amazon", "ebay", "kleinanzeigen", "youtube", "google_trends", "anime2you", "narutop99", "wikimedia"] },
           "records": { "type": ["integer", "null"], "minimum": 0, "description": "null only in the public edition, for a source whose figures are not published." },
           "in_score": { "type": "boolean" }
         }

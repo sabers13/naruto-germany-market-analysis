@@ -28,15 +28,11 @@ def test_votes_eu_present_for_all_14():
 @archive_present
 def test_context_metrics_cover_all_14():
     wiki, wiki_rows = context.wikimedia_run()
-    insta, insta_media = context.instagram_run()
     assert set(wiki["character_key"]) == set(characters.keys())
-    assert set(insta["character_key"]) == set(characters.keys())
-    assert (wiki["value"] > 0).all() and (insta["value"] > 0).all()
-    assert not wiki["primary"].any() and not insta["primary"].any()
+    assert (wiki["value"] > 0).all()
+    assert not wiki["primary"].any()
     metrics.validate(wiki)
-    metrics.validate(insta)
     assert wiki_rows == 6374
-    assert insta_media == 843
 
 
 @pytest.mark.archive
@@ -47,13 +43,10 @@ def test_t04_catalog_totals_match():
                     "narutop99_rankings.parquet"))
     w = str(dataset("wikimedia", "collector", "exports", "full_2026-10-22",
                     "pageviews.parquet"))
-    i = str(dataset("instagram", "raw", "parquet", "insta_records.parquet"))
     assert con.execute(
         f"SELECT COUNT(*) FROM read_parquet('{a}')").fetchone()[0] == 4392
     assert con.execute(
         f"SELECT COUNT(*) FROM read_parquet('{w}')").fetchone()[0] == 482680
-    assert con.execute(
-        f"SELECT COUNT(*) FROM read_parquet('{i}')").fetchone()[0] == 918
     assert con.execute(
         f"SELECT COUNT(*) FROM read_parquet('{a}') "
         "WHERE region = 'europe'").fetchone()[0] == 488

@@ -16,14 +16,13 @@ A local, read-only archive with one folder per source. `config/paths.toml` names
 | NARUTOP99 | votes | The official published results | A 2023 snapshot, read from archived copies. |
 | Google Trends | watching | Google's public Trends service, Germany | There is no official API; Google offers a CSV export in the web interface. Figures are indices, not volumes. |
 | Event calendar | timeline | Curated by hand from public announcements | Franchise events only. |
-| Amazon.de, eBay.de, Kleinanzeigen, Instagram | shoppers / context | Public pages of the platforms, small paced runs | These platforms restrict automated access in their terms or robots.txt unless permission is given, so **the collection code and raw data are not published**, and Kleinanzeigen figures are not published at all (the source only feeds the index). |
+| Amazon.de, eBay.de, Kleinanzeigen | shoppers | Public pages of the platforms, small paced runs | These platforms restrict automated access in their terms or robots.txt unless permission is given, so **the collection code and raw data are not published**, and Kleinanzeigen figures are not published at all (the source only feeds the index). |
 
 ## If you want to reproduce this with your own data
 
 Use an official route and check the terms yourself. A robots.txt allowance, a public page, aggregation or an API key is not by itself permission to collect, keep or redistribute data.
 
 - eBay: the Browse API.
-- Instagram: the Graph API.
 - Amazon: the Creators API (needs an eligible Associates account).
 - Kleinanzeigen: ask the platform for written consent.
 

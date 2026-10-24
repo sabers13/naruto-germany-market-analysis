@@ -1,17 +1,12 @@
-"""Context sources (ANALYSIS_PLAN.md §4): Wikimedia pageviews and Instagram media.
+"""Context source (ANALYSIS_PLAN.md §4): Wikimedia pageviews.
 
-Both are lens ``context``, non-primary (shown, never ranked), class C.
+Lens ``context``, non-primary (shown, never ranked), class C.
 
 Wikimedia: granularity = 'monthly', agent = 'user', last 12 complete months
 before the 2026-10-22 snapshot (2025-10 .. 2026-09), all languages summed.
 Metric ``pageviews_12m``.
-
-Instagram: media records (``record_type = 'media'``) whose ``mentions_detail``
-keys name the character. Metric ``media`` (distinct media count).
 """
 from __future__ import annotations
-
-import json
 
 import duckdb
 import pandas as pd
@@ -62,46 +57,3 @@ def wikimedia_run() -> tuple[pd.DataFrame, int]:
     } for key in characters.keys()]
     return pd.DataFrame(rows), int(df["n"].sum())
 
-
-def _media_character_sets() -> dict[str, set[str]]:
-    """Map character key -> set of media record_ids mentioning it."""
-    con = duckdb.connect()
-    rows = con.execute(
-        """SELECT record_id, mentions_detail FROM read_parquet(?)
-           WHERE record_type = 'media'""",
-        [str(dataset("instagram", "raw", "parquet", "insta_records.parquet"))],
-    ).fetchall()
-    con.close()
-    smap = characters.source_map("instagram")
-    found: dict[str, set[str]] = {k: set() for k in characters.keys()}
-    n_media = 0
-    for record_id, detail in rows:
-        n_media += 1
-        try:
-            keys = json.loads(detail or "{}")
-        except json.JSONDecodeError:
-            keys = {}
-        for k in keys:
-            if k in smap:
-                found[smap[k]].add(record_id)
-    return found, n_media
-
-
-def instagram_run() -> tuple[pd.DataFrame, int]:
-    """Return (metrics frame, media rows scanned) for Instagram mentions."""
-    found, n_media = _media_character_sets()
-    rows = [{
-        "character_key": key,
-        "source": "instagram",
-        "metric": "media",
-        "period": "snapshot",
-        "region": "global",  # collection is not DE-scoped
-        "value": float(len(found[key])),
-        "n": len(found[key]),  # distinct media records behind the count
-        "unit": "count",
-        "evidence_class": "C",
-        "lens": "context",
-        "primary": False,
-        "lane": "votes",
-    } for key in characters.keys()]
-    return pd.DataFrame(rows), n_media

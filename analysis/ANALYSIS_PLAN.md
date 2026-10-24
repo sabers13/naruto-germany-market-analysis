@@ -45,7 +45,6 @@ General:
 | **Anime2You** | `anime2you/data/full/posts.parquet`, `comments.parquet` | **Primary metric:** comment mentions. Match `text_aliases` on `content_text`, whole word, case-sensitive. Ambiguous bare aliases (Hinata, Pain) count only when a `naruto_context_words` term appears in the same comment. Dedupe comment `id`. Secondary: articles via `characters_mentioned`. |
 | **NARUTOP99** | `anime2you/data/external/narutop99/narutop99_rankings.parquet` | `region = 'europe'`. **Primary metric:** votes (exact name map from characters.yaml). One 2023 snapshot. |
 | **Wikimedia** (context) | `wikimedia/collector/exports/full_2026-10-22/pageviews.parquet` | `granularity = 'monthly'`, `agent = 'user'`, last 12 complete months, all languages. `primary = false`, lens `context`. |
-| **Instagram** (context) | `instagram/raw/parquet/insta_records.parquet` | Media count per character from `mentions_detail`. `primary = false`, lens `context`. |
 | **Event calendar** | `event_calendar/data/events.parquet` | Dashboard timeline: ≤ 6 events from franchise event types only, chosen in this order: (1) `confirmed` German-relevant events (`region_scope` de/dach) in the core window, newest first, leaving one slot; (2) the newest `confirmed` franchise announcement. Each needs `source_url`. Titles/notes in EN and DE, written by the lane (facts only). |
 
 ## §5 Metric registry and lenses
@@ -63,7 +62,6 @@ Every lane writes the long table in `src/nga/metrics.py`. Exactly one `primary` 
 | narutop99 | `votes_eu` | votes | C | yes |
 | youtube (2nd) | `videos_de` | watching | B | **no** (secondary; shown, not ranked, because it overlaps with comments) |
 | wikimedia | `pageviews_12m` | context | C | no |
-| instagram | `media` | context | C | no |
 
 That gives **7 in-score sources:** 3 shoppers, 3 watching, 1 votes. The dashboard's `kpis.sources_in_score` = 7. The preview's 8 counted YouTube twice; that was a preview artefact.
 
@@ -172,3 +170,4 @@ Values: use the same values scoring uses (after §6 treatments; an excluded cand
 Wording rule for reports: "Minato reaches 640% of Naruto's Europe vote", never "Sasuke is more popular than Naruto".
 - 2026-10-23 — §8 kpis/sources — Record counts cover only records actually used: google_trends `records` and kpis.records_counted exclude the rows of censored series.
 - 2026-10-23 — §8 momentum — change_12m stays in the release for every shown series (contract unchanged), but values flagged `censored` must not be displayed or described as a trend. counts.google_interest = null means "not measurable (censored or ambiguous)", never zero. Both rules are stated in meta.notes and the release notes.
+- 2026-10-24 — §4 / §5 — Instagram removed from the analysis and the release: it was a context-only source (never scored, never ranked), so no rank, index or robustness result changes. Reason: Instagram's robots.txt prohibits automated collection, so its data is not used in the public edition. Contract `sources` loses the `instagram` entry; the release id changes accordingly.

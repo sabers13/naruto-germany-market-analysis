@@ -1,4 +1,4 @@
-"""Votes + context lane (votes lane): NARUTOP99 fan vote, Wikimedia/Instagram context,
+"""Votes + context lane (votes lane): NARUTOP99 fan vote, Wikimedia context,
 the dashboard event timeline.
 
 Reads the read-only archive in place; writes work/metrics/votes.parquet and
