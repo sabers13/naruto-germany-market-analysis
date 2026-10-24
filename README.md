@@ -4,6 +4,8 @@
 
 **Live:** [sabersojudi.com/naruto-germany](https://sabersojudi.com/naruto-germany/)
 
+**Explore the engineering:** [Runnable Python methods](methods/README.md) · [Architecture](methods/docs/ARCHITECTURE.md) · [Statistical method](methods/docs/METHOD.md)
+
 ![Overview: the top three candidates, shop listings and how sure the ranking is](docs/screenshots/overview.png)
 
 ## What it shows
@@ -47,8 +49,19 @@ The method was fixed in writing before any results were produced, and every chan
 | `data/dashboard.js` | The same data as loaded by the page (`window.DASHBOARD`) |
 | `contract/` | The JSON Schema the published data follows (public subset of contract 1.2.0) |
 | `docs/screenshots/` | The screenshots above |
+| `methods/` | Standalone Python methods companion: synthetic examples, quality-aware ranking, sensitivity analysis, reproducible exports, and tests |
 
-**Not included, on purpose:** the data collection code, the raw datasets and the analysis pipeline. The page shows only totals, medians, ranks and shares; no listings, comments, usernames or links. Kleinanzeigen is part of the index, but its figures are not published. YouTube figures are the project's own counts (as of 22 Oct 2026), never YouTube's view or like statistics.
+**Not included, on purpose:** the data collection code, the raw datasets and the original archive-dependent analysis backend. The `methods/` companion is a generalized implementation with invented inputs and outputs; it does not reproduce the study release. The page shows only totals, medians, ranks and shares; no listings, comments, usernames or links. Kleinanzeigen is part of the index, but its figures are not published. YouTube figures are the project's own counts (as of 22 Oct 2026), never YouTube's view or like statistics.
+
+## Run the analysis methods
+
+The [methods companion](methods/README.md) demonstrates input validation, match-quality checks with Wilson intervals, weighted rank aggregation, missing-data handling, leave-one-source-out and alternative-weight sensitivity checks, tie-corrected Kendall’s W, and SHA-256 provenance.
+
+```bash
+make -C methods check
+```
+
+Requires Python 3.12 or newer and Make. No runtime packages, credentials, private archive, or network access are required. All bundled method inputs and outputs are synthetic. See the [architecture](methods/docs/ARCHITECTURE.md) and [publication scope](methods/docs/PUBLICATION_SCOPE.md).
 
 ## Run it locally
 

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "naruto-germany-methods"
+version = "0.1.0"
+description = "Reproducible, quality-aware evidence ranking demonstrated with synthetic data"
+requires-python = ">=3.12"
+dependencies = []
+license = {text = "MIT"}
+
+[project.scripts]
+market-methods = "market_methods.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,288 @@
+{
+  "data_kind": "synthetic",
+  "limitations": [
+    "Evidence indices are relative ranks, not sales forecasts or probabilities.",
+    "Missing observations remain missing; available lens weights are renormalized.",
+    "Within-source ranks may cover different entity sets; compare coverage before interpretation.",
+    "Quality adjustment is a heuristic, not an unbiased correction or uncertainty propagation.",
+    "Sensitivity checks are descriptive, not statistical confidence intervals.",
+    "Top-k membership breaks score ties alphabetically; inspect top_boundary_tie.",
+    "Input hashes establish reproducibility, not access or redistribution permission."
+  ],
+  "method_version": "0.1.0",
+  "provenance": {
+    "config_sha256": "fafb84f7bc9e216b4e7dcfbb5c3e78f39c4ccaf1d8fd41dbfc2b4de083848785",
+    "metrics_sha256": "5ce6909322b78fecd515aebbfe1ea5fb5a7724316693a42fdf188775e8d8b480",
+    "quality_sha256": "146ff22cb33c62320f732b2c8b29225a02d7c2bc319315bfe3ffee58f1b7e081"
+  },
+  "quality": [
+    {
+      "ci_high": 0.9911187805671268,
+      "ci_low": 0.7638641064874331,
+      "entity": "*",
+      "precision": 0.95,
+      "source": "catalogue_a",
+      "treatment": "use"
+    },
+    {
+      "ci_high": 0.9193436467288,
+      "ci_low": 0.5839782779742401,
+      "entity": "*",
+      "precision": 0.8,
+      "source": "interest_a",
+      "treatment": "adjust"
+    },
+    {
+      "ci_high": 0.8318224187964902,
+      "ci_low": 0.3126695474501864,
+      "entity": "candidate_f",
+      "precision": 0.6,
+      "source": "interest_b",
+      "treatment": "exclude"
+    }
+  ],
+  "ranking": [
+    {
+      "entity": "candidate_a",
+      "index": 93.0,
+      "lens_ranks": {
+        "attention": 1.5,
+        "availability": 1.0,
+        "preference": 2.0
+      },
+      "quality_treatments": {
+        "catalogue_a": "use",
+        "catalogue_b": "unassessed",
+        "interest_a": "adjust",
+        "interest_b": "unassessed",
+        "survey_a": "unassessed"
+      },
+      "rank": 1.0,
+      "score": 1.35,
+      "source_ranks": {
+        "catalogue_a": 1.0,
+        "catalogue_b": 1.0,
+        "interest_a": 2.0,
+        "interest_b": 1.0,
+        "survey_a": 2.0
+      }
+    },
+    {
+      "entity": "candidate_b",
+      "index": 79.0,
+      "lens_ranks": {
+        "attention": 1.5,
+        "availability": 2.0,
+        "preference": 3.0
+      },
+      "quality_treatments": {
+        "catalogue_a": "use",
+        "catalogue_b": "unassessed",
+        "interest_a": "adjust",
+        "interest_b": "unassessed",
+        "survey_a": "unassessed"
+      },
+      "rank": 2.0,
+      "score": 2.05,
+      "source_ranks": {
+        "catalogue_a": 2.0,
+        "catalogue_b": 2.0,
+        "interest_a": 1.0,
+        "interest_b": 2.0,
+        "survey_a": 3.0
+      }
+    },
+    {
+      "entity": "candidate_c",
+      "index": 68.0,
+      "lens_ranks": {
+        "attention": 3.0,
+        "availability": 3.0,
+        "preference": 1.0
+      },
+      "quality_treatments": {
+        "catalogue_a": "use",
+        "catalogue_b": "unassessed",
+        "interest_a": "adjust",
+        "interest_b": "unassessed",
+        "survey_a": "unassessed"
+      },
+      "rank": 3.0,
+      "score": 2.6,
+      "source_ranks": {
+        "catalogue_a": 3.0,
+        "catalogue_b": 3.0,
+        "interest_a": 3.0,
+        "interest_b": 3.0,
+        "survey_a": 1.0
+      }
+    },
+    {
+      "entity": "candidate_d",
+      "index": 40.0,
+      "lens_ranks": {
+        "attention": 4.0,
+        "availability": 4.0,
+        "preference": 4.0
+      },
+      "quality_treatments": {
+        "catalogue_a": "use",
+        "catalogue_b": "unassessed",
+        "interest_a": "adjust",
+        "interest_b": "unassessed",
+        "survey_a": "unassessed"
+      },
+      "rank": 4.0,
+      "score": 4.0,
+      "source_ranks": {
+        "catalogue_a": 4.0,
+        "catalogue_b": 4.0,
+        "interest_a": 4.0,
+        "interest_b": 4.0,
+        "survey_a": 4.0
+      }
+    },
+    {
+      "entity": "candidate_e",
+      "index": 20.0,
+      "lens_ranks": {
+        "attention": 5.0,
+        "availability": 5.0,
+        "preference": 5.0
+      },
+      "quality_treatments": {
+        "catalogue_a": "use",
+        "catalogue_b": "unassessed",
+        "interest_a": "adjust",
+        "interest_b": "unassessed",
+        "survey_a": "unassessed"
+      },
+      "rank": 5.0,
+      "score": 5.0,
+      "source_ranks": {
+        "catalogue_a": 5.0,
+        "catalogue_b": 5.0,
+        "interest_a": 5.0,
+        "interest_b": null,
+        "survey_a": 5.0
+      }
+    },
+    {
+      "entity": "candidate_f",
+      "index": 0.0,
+      "lens_ranks": {
+        "attention": 6.0,
+        "availability": 6.0,
+        "preference": 6.0
+      },
+      "quality_treatments": {
+        "catalogue_a": "use",
+        "catalogue_b": "unassessed",
+        "interest_a": "adjust",
+        "interest_b": "exclude",
+        "survey_a": "unassessed"
+      },
+      "rank": 6.0,
+      "score": 6.0,
+      "source_ranks": {
+        "catalogue_a": 6.0,
+        "catalogue_b": 6.0,
+        "interest_a": 6.0,
+        "interest_b": null,
+        "survey_a": 6.0
+      }
+    }
+  ],
+  "release_id": "ae8de5a8f07303328b1229739691da0918602b33517719542bc2c1d3839bf418",
+  "robustness": {
+    "alternative_weights": [
+      {
+        "name": "availability_only",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ],
+        "weights": {
+          "attention": 0,
+          "availability": 1,
+          "preference": 0
+        }
+      },
+      {
+        "name": "equal",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ],
+        "weights": {
+          "attention": 0.3333333333333333,
+          "availability": 0.3333333333333333,
+          "preference": 0.3333333333333333
+        }
+      }
+    ],
+    "kendall": {
+      "entities": 4,
+      "sources": 5,
+      "w": 0.744
+    },
+    "leave_one_out": [
+      {
+        "dropped": "catalogue_a",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ]
+      },
+      {
+        "dropped": "catalogue_b",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ]
+      },
+      {
+        "dropped": "interest_a",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ]
+      },
+      {
+        "dropped": "interest_b",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ]
+      },
+      {
+        "dropped": "survey_a",
+        "same_members": true,
+        "top": [
+          "candidate_a",
+          "candidate_b",
+          "candidate_c"
+        ]
+      }
+    ],
+    "top": [
+      "candidate_a",
+      "candidate_b",
+      "candidate_c"
+    ],
+    "top_boundary_tie": false
+  },
+  "schema_version": "1.0.0"
+}

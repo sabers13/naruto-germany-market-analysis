@@ -1,0 +1,39 @@
+{
+  "alternative_weights": {
+    "availability_only": {
+      "attention": 0,
+      "availability": 1,
+      "preference": 0
+    },
+    "equal": {
+      "attention": 0.3333333333333333,
+      "availability": 0.3333333333333333,
+      "preference": 0.3333333333333333
+    }
+  },
+  "minimum_lens_coverage": 0.5,
+  "sources": {
+    "catalogue_a": {
+      "lens": "availability"
+    },
+    "catalogue_b": {
+      "lens": "availability"
+    },
+    "interest_a": {
+      "lens": "attention"
+    },
+    "interest_b": {
+      "lens": "attention"
+    },
+    "survey_a": {
+      "lens": "preference"
+    }
+  },
+  "synthetic": true,
+  "top_k": 3,
+  "weights": {
+    "attention": 0.3,
+    "availability": 0.5,
+    "preference": 0.2
+  }
+}

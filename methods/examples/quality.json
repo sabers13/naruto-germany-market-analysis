@@ -1,0 +1,18 @@
+[
+  {
+    "correct": 19,
+    "source": "catalogue_a",
+    "total": 20
+  },
+  {
+    "correct": 16,
+    "source": "interest_a",
+    "total": 20
+  },
+  {
+    "correct": 6,
+    "entity": "candidate_f",
+    "source": "interest_b",
+    "total": 10
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "entity": "candidate_a",
+    "source": "catalogue_a",
+    "value": 90
+  },
+  {
+    "entity": "candidate_b",
+    "source": "catalogue_a",
+    "value": 70
+  },
+  {
+    "entity": "candidate_c",
+    "source": "catalogue_a",
+    "value": 55
+  },
+  {
+    "entity": "candidate_d",
+    "source": "catalogue_a",
+    "value": 40
+  },
+  {
+    "entity": "candidate_e",
+    "source": "catalogue_a",
+    "value": 25
+  },
+  {
+    "entity": "candidate_f",
+    "source": "catalogue_a",
+    "value": 10
+  },
+  {
+    "entity": "candidate_a",
+    "source": "catalogue_b",
+    "value": 80
+  },
+  {
+    "entity": "candidate_b",
+    "source": "catalogue_b",
+    "value": 75
+  },
+  {
+    "entity": "candidate_c",
+    "source": "catalogue_b",
+    "value": 50
+  },
+  {
+    "entity": "candidate_d",
+    "source": "catalogue_b",
+    "value": 45
+  },
+  {
+    "entity": "candidate_e",
+    "source": "catalogue_b",
+    "value": 20
+  },
+  {
+    "entity": "candidate_f",
+    "source": "catalogue_b",
+    "value": 15
+  },
+  {
+    "entity": "candidate_a",
+    "source": "interest_a",
+    "value": 60
+  },
+  {
+    "entity": "candidate_b",
+    "source": "interest_a",
+    "value": 85
+  },
+  {
+    "entity": "candidate_c",
+    "source": "interest_a",
+    "value": 55
+  },
+  {
+    "entity": "candidate_d",
+    "source": "interest_a",
+    "value": 35
+  },
+  {
+    "entity": "candidate_e",
+    "source": "interest_a",
+    "value": 20
+  },
+  {
+    "entity": "candidate_f",
+    "source": "interest_a",
+    "value": 15
+  },
+  {
+    "entity": "candidate_a",
+    "source": "interest_b",
+    "value": 70
+  },
+  {
+    "entity": "candidate_b",
+    "source": "interest_b",
+    "value": 65
+  },
+  {
+    "entity": "candidate_c",
+    "source": "interest_b",
+    "value": 60
+  },
+  {
+    "entity": "candidate_d",
+    "source": "interest_b",
+    "value": 30
+  },
+  {
+    "entity": "candidate_e",
+    "source": "interest_b",
+    "value": null
+  },
+  {
+    "entity": "candidate_f",
+    "source": "interest_b",
+    "value": 10
+  },
+  {
+    "entity": "candidate_a",
+    "source": "survey_a",
+    "value": 65
+  },
+  {
+    "entity": "candidate_b",
+    "source": "survey_a",
+    "value": 60
+  },
+  {
+    "entity": "candidate_c",
+    "source": "survey_a",
+    "value": 90
+  },
+  {
+    "entity": "candidate_d",
+    "source": "survey_a",
+    "value": 40
+  },
+  {
+    "entity": "candidate_e",
+    "source": "survey_a",
+    "value": 30
+  },
+  {
+    "entity": "candidate_f",
+    "source": "survey_a",
+    "value": 20
+  }
+]
