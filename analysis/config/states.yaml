@@ -1,0 +1,18 @@
+# Bundesländer: Kleinanzeigen `state` value → contract code and tile-map grid [column, row].
+# The grid is the dashboard's fixed tile-map layout; do not change it without the UI owner.
+Schleswig-Holstein:      {code: SH, grid: [3, 1]}
+Mecklenburg-Vorpommern:  {code: MV, grid: [4, 1]}
+Bremen:                  {code: HB, grid: [2, 2]}
+Hamburg:                 {code: HH, grid: [3, 2]}
+Berlin:                  {code: BE, grid: [5, 2]}
+Niedersachsen:           {code: NI, grid: [2, 3]}
+Sachsen-Anhalt:          {code: ST, grid: [3, 3]}
+Brandenburg:             {code: BB, grid: [4, 3]}
+Nordrhein-Westfalen:     {code: NW, grid: [1, 4]}
+Hessen:                  {code: HE, grid: [2, 4]}
+Thüringen:               {code: TH, grid: [3, 4]}
+Sachsen:                 {code: SN, grid: [4, 4]}
+Rheinland-Pfalz:         {code: RP, grid: [1, 5]}
+Baden-Württemberg:       {code: BW, grid: [2, 5]}
+Bayern:                  {code: BY, grid: [3, 5]}
+Saarland:                {code: SL, grid: [1, 6]}

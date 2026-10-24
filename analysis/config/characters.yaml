@@ -1,0 +1,76 @@
+# Locked character set (ANALYSIS_PLAN.md §2). Do not add, remove or rename keys.
+# Source-specific spellings were verified against the archive on 2026-10-23.
+# T00 re-verifies every alias programmatically; T02 uses `text_aliases` for its own
+# text matching (whole-word, case-sensitive unless noted).
+
+roles:
+  benchmark: [naruto_uzumaki]
+  candidate: [sasuke_uchiha, itachi_uchiha, kakashi_hatake, hinata_hyuga, gaara,
+              madara_uchiha, obito_uchiha, minato_namikaze, nagato_pain, jiraiya,
+              orochimaru, tsunade, shikamaru_nara]
+  excluded: [sakura_haruno, boruto_uzumaki]   # by decision; never ranked, never shown
+
+characters:
+  naruto_uzumaki:
+    name: Naruto Uzumaki
+    flags: [franchise_name]          # "Naruto" is also the franchise: counts run high
+    source_keys: {amazon: naruto_uzumaki, ebay: naruto_uzumaki, kleinanzeigen: naruto_uzumaki, youtube: naruto_uzumaki, instagram: naruto_uzumaki, wikimedia: naruto_uzumaki, anime2you: Naruto Uzumaki, narutop99: Naruto Uzumaki, trends_term: Naruto, trends_topic: /m/02sp46}
+    text_aliases: ["Naruto Uzumaki", "Uzumaki Naruto"]   # bare "Naruto" is NOT a character match
+  sasuke_uchiha:
+    name: Sasuke Uchiha
+    source_keys: {amazon: sasuke_uchiha, ebay: sasuke_uchiha, kleinanzeigen: sasuke_uchiha, youtube: sasuke_uchiha, instagram: sasuke_uchiha, wikimedia: sasuke_uchiha, anime2you: Sasuke Uchiha, narutop99: Sasuke Uchiha, trends_term: Sasuke, trends_topic: /m/037b2q}
+    text_aliases: ["Sasuke", "Uchiha Sasuke"]
+  itachi_uchiha:
+    name: Itachi Uchiha
+    source_keys: {amazon: itachi_uchiha, ebay: itachi_uchiha, kleinanzeigen: itachi_uchiha, youtube: itachi_uchiha, instagram: itachi_uchiha, wikimedia: itachi_uchiha, anime2you: Itachi Uchiha, narutop99: Itachi Uchiha, trends_term: Itachi, trends_topic: /m/02p8p45}
+    text_aliases: ["Itachi"]
+  kakashi_hatake:
+    name: Kakashi Hatake
+    source_keys: {amazon: kakashi_hatake, ebay: kakashi_hatake, kleinanzeigen: kakashi_hatake, youtube: [kakashi_hatake, kakashi_mask], instagram: kakashi_hatake, wikimedia: kakashi_hatake, anime2you: Kakashi Hatake, narutop99: Kakashi Hatake, trends_term: Kakashi, trends_topic: /m/0g1wjz}
+    text_aliases: ["Kakashi"]
+  hinata_hyuga:
+    name: Hinata Hyuga
+    flags: [ambiguous_name]          # also Shoyo Hinata (Haikyuu!!) and a common Japanese name
+    source_keys: {amazon: hinata_hyuga, ebay: hinata_hyuga, kleinanzeigen: hinata_hyuga, youtube: hinata_hyuga, instagram: hinata_hyuga, wikimedia: hinata_hyuga, anime2you: Hinata Hyuga, narutop99: Hinata Hyuga, trends_term: Hinata, trends_topic: /m/04b5nh}
+    text_aliases: ["Hinata Hyuga", "Hinata Hyūga", "Hyuga Hinata"]   # bare "Hinata" only with a Naruto context word (T02)
+  gaara:
+    name: Gaara
+    source_keys: {amazon: gaara, ebay: gaara, kleinanzeigen: gaara, youtube: gaara, instagram: gaara, wikimedia: gaara, anime2you: Gaara, narutop99: "Gaara(Fifth Kazekage)", trends_term: Gaara, trends_topic: /m/04b5gp}
+    text_aliases: ["Gaara"]
+  madara_uchiha:
+    name: Madara Uchiha
+    source_keys: {amazon: madara_uchiha, ebay: madara_uchiha, kleinanzeigen: madara_uchiha, youtube: madara_uchiha, instagram: madara_uchiha, wikimedia: madara_uchiha, anime2you: Madara Uchiha, narutop99: Madara Uchiha, trends_term: Madara, trends_topic: null}
+    text_aliases: ["Madara"]
+  obito_uchiha:
+    name: Obito Uchiha
+    source_keys: {amazon: obito_uchiha, ebay: obito_uchiha, kleinanzeigen: obito_uchiha, youtube: obito_uchiha, instagram: obito_uchiha, wikimedia: obito_uchiha, anime2you: Obito Uchiha, narutop99: Obito Uchiha, trends_term: Obito, trends_topic: /g/11b6b3mpyt}
+    text_aliases: ["Obito"]
+  minato_namikaze:
+    name: Minato Namikaze
+    source_keys: {amazon: minato_namikaze, ebay: minato_namikaze, kleinanzeigen: minato_namikaze, youtube: minato_namikaze, instagram: minato_namikaze, wikimedia: minato_namikaze, anime2you: Minato Namikaze, narutop99: "Minato Namikaze(Fourth Hokage)", trends_term: Minato, trends_topic: /m/05mh5xj}
+    text_aliases: ["Minato"]
+  nagato_pain:
+    name: Pain / Nagato
+    flags: [ambiguous_name]          # "Pain" is an ordinary English word
+    source_keys: {amazon: nagato_pain, ebay: pain_nagato, kleinanzeigen: pain_nagato, youtube: nagato_pain, instagram: nagato_pain, wikimedia: nagato_naruto, anime2you: Pain, narutop99: Nagato, trends_term: Pain, trends_topic: null}
+    text_aliases: ["Nagato", "Pain (Naruto)", "Pein"]   # bare "Pain" only with a Naruto context word (T02)
+  jiraiya:
+    name: Jiraiya
+    source_keys: {amazon: jiraiya, ebay: jiraiya, kleinanzeigen: jiraiya, youtube: jiraiya, instagram: jiraiya, wikimedia: jiraiya_naruto, anime2you: Jiraiya, narutop99: Jiraiya, trends_term: Jiraiya, trends_topic: /m/075s5y}
+    text_aliases: ["Jiraiya"]
+  orochimaru:
+    name: Orochimaru
+    source_keys: {amazon: orochimaru, ebay: orochimaru, kleinanzeigen: orochimaru, youtube: orochimaru, instagram: orochimaru, wikimedia: orochimaru_naruto, anime2you: Orochimaru, narutop99: Orochimaru, trends_term: Orochimaru, trends_topic: /m/091dhl}
+    text_aliases: ["Orochimaru"]
+  tsunade:
+    name: Tsunade
+    source_keys: {amazon: tsunade, ebay: tsunade, kleinanzeigen: tsunade, youtube: tsunade, instagram: tsunade, wikimedia: tsunade, anime2you: Tsunade, narutop99: "Tsunade(Fifth Hokage)", trends_term: Tsunade, trends_topic: /m/095zzj}
+    text_aliases: ["Tsunade"]
+  shikamaru_nara:
+    name: Shikamaru Nara
+    source_keys: {amazon: shikamaru_nara, ebay: shikamaru_nara, kleinanzeigen: shikamaru_nara, youtube: shikamaru_nara, instagram: shikamaru_nara, wikimedia: shikamaru_nara, anime2you: Shikamaru Nara, narutop99: Shikamaru Nara, trends_term: Shikamaru, trends_topic: /m/04b5rz}
+    text_aliases: ["Shikamaru"]
+
+# Words that make a bare ambiguous alias count as a Naruto mention when they appear
+# in the same text (T02). Case-insensitive.
+naruto_context_words: [naruto, boruto, konoha, akatsuki, uchiha, hokage, shinobi, ninja, jutsu, sharingan, rinnegan, byakugan, chakra, hyuga, hyūga]

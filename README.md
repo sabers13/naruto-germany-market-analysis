@@ -4,7 +4,7 @@
 
 **Live:** [sabersojudi.com/naruto-germany](https://sabersojudi.com/naruto-germany/)
 
-**Explore the engineering:** [Runnable Python methods](methods/README.md) · [Architecture](methods/docs/ARCHITECTURE.md) · [Statistical method](methods/docs/METHOD.md)
+**Explore the engineering:** [Analysis pipeline](analysis/README.md) · [Analysis plan, fixed before results](analysis/ANALYSIS_PLAN.md) · [Runnable Python methods](methods/README.md) · [Architecture](methods/docs/ARCHITECTURE.md) · [Statistical method](methods/docs/METHOD.md)
 
 ![Overview: the top three candidates, shop listings and how sure the ranking is](docs/screenshots/overview.png)
 
@@ -49,9 +49,31 @@ The method was fixed in writing before any results were produced, and every chan
 | `data/dashboard.js` | The same data as loaded by the page (`window.DASHBOARD`) |
 | `contract/` | The JSON Schema the published data follows (public subset of contract 1.2.0) |
 | `docs/screenshots/` | The screenshots above |
+| `analysis/` | The study's analysis pipeline: lanes, accuracy check, scoring, robustness, release build (code, plan, findings; no collection code or raw data) |
 | `methods/` | Standalone Python methods companion: synthetic examples, quality-aware ranking, sensitivity analysis, reproducible exports, and tests |
 
-**Not included, on purpose:** the data collection code, the raw datasets and the original archive-dependent analysis backend. The `methods/` companion is a generalized implementation with invented inputs and outputs; it does not reproduce the study release. The page shows only totals, medians, ranks and shares; no listings, comments, usernames or links. Kleinanzeigen is part of the index, but its figures are not published. YouTube figures are the project's own counts (as of 22 Oct 2026), never YouTube's view or like statistics.
+**Not included, on purpose:** the data collection code and the raw datasets. The analysis pipeline in `analysis/` needs the private archive for a full run; its tests and demo run on synthetic inputs. The `methods/` companion is a generalized implementation with invented inputs and outputs; it does not reproduce the study release. The page shows only totals, medians, ranks and shares; no listings, comments, usernames or links. Kleinanzeigen is part of the index, but its figures are not published. YouTube figures are the project's own counts (as of 22 Oct 2026), never YouTube's view or like statistics.
+
+## The workflow behind it
+
+1. **Plan first.** [`analysis/ANALYSIS_PLAN.md`](analysis/ANALYSIS_PLAN.md) fixed the characters, cleaning rules, metrics, weights and stop rules before any result existed. Later changes are dated and justified.
+2. **Four evidence lanes** (shops, fans' text, Google Trends, fan votes) write one metrics table, counting distinct entities rather than raw rows.
+3. **Accuracy check.** Keyword matches were sampled and hand-labelled; low-precision cells were adjusted or dropped, and a blind second labelling of 72 items agreed 97% (Cohen's κ 0.91).
+4. **Scoring and stress tests.** Ranks within each source, lens ranks, a weighted evidence index, then leave-one-source-out, alternative weights and Kendall's W.
+5. **Release.** Schema-validated JSON with a content-addressed id, an input hash and a privacy check (no links, titles or long snippets). The public edition removes Kleinanzeigen figures.
+
+Details, findings and what is deliberately not published: [analysis/README.md](analysis/README.md), [analysis/reports/FINDINGS.md](analysis/reports/FINDINGS.md), [analysis/docs/DATA_ACCESS.md](analysis/docs/DATA_ACCESS.md).
+
+## Run the analysis pipeline
+
+```bash
+cd analysis
+uv sync
+make test    # synthetic inputs; archive tests skip without the private archive
+make demo    # builds a full and a public release from synthetic inputs
+```
+
+Requires Python 3.12 or newer and [uv](https://docs.astral.sh/uv/). A full run needs the private source archive, which is not part of this repository.
 
 ## Run the analysis methods
 

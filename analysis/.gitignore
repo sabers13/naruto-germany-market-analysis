@@ -1,0 +1,7 @@
+# Row-level intermediates (titles, snippets, comment text): never commit
+work/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

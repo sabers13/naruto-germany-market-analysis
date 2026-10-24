@@ -1,7 +1,7 @@
 /* Edition layer for contract 1.2.0. Loads after preview.js and re-renders.
    Both editions: Naruto leaves the candidate table and gets his own page, source
    counts and the trend reference come from the release, flat trends read as flat.
-   Regions come from Google Trends (interview.js swaps in the Kleinanzeigen map).
+   Regions come from Google Trends.
    Public edition (meta.edition === 'public'): no Kleinanzeigen figures. Every number comes from window.DASHBOARD. */
 'use strict';
 const PUBLIC=D.meta.edition==='public';

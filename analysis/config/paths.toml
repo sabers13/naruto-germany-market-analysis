@@ -1,0 +1,21 @@
+# Where the analysis reads from and writes to.
+# The data archive is READ-ONLY and is not part of this repository.
+# Point NGA_ARCHIVE at your own copy of the datasets folder layout
+# (see docs/DATA_ACCESS.md), or run the synthetic demo (see README.md).
+
+[archive]
+root = "archive"
+# The archive commit the analysis is pinned to. The pipeline refuses to run on
+# any other commit unless NGA_ALLOW_ARCHIVE_DRIFT=1.
+commit = "1dd547239f30e5b38908921b03d240b4e0d20228"
+
+[local]
+# Gitignored. Holds row-level intermediates (titles, comment snippets): never committed, never released.
+work = "work"
+# Committed. Aggregates only, validated against contract/dashboard.schema.json.
+release = "release"
+reports = "reports"
+
+[snapshot]
+date = "2026-10-22"
+youtube_retention_deadline = "2026-11-21"
